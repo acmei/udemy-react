@@ -25,4 +25,4 @@ var element = React.createElement(ThumbnailList, options);
 
 // React, after rendering, please place it in my body tag
 // React.render(element tag, where the element needs to be placed)
-React.render(element, document.querySelector('.target'));
+React.render(element, document.querySelector('.container'));
