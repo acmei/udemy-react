@@ -1,3 +1,17 @@
+.content {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.loaded {
+  opacity: 1;
+}
+
 .black {
   color: black
 }
+
+.input-group, .clear-complete {
+  margin-bottom: 15px;
+}
+

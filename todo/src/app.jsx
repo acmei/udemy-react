@@ -17,16 +17,16 @@ var App = React.createClass({
   },
   // only run once, when the component is mounted to DOM
   componentWillMount: function() {
-    fb = new Firebase(rootUrl + 'items/');
+    this.fb = new Firebase(rootUrl + 'items/');
     // bindAsObject given as method from ReactFire
     // takes React components and translates to Firebase
     // data is retrieved from endpoint and placed on
     // this.state.items (as noted in last param)
     // this.state.items => {}
-    this.bindAsObject(fb, 'items');
+    this.bindAsObject(this.fb, 'items');
     // on allows us to listen to events
     // value is triggered by fb when data comes in
-    fb.on('value', this.handleDataLoaded);
+    this.fb.on('value', this.handleDataLoaded);
   },
   render: function() {
     return <div className='row panel panel-default'>
@@ -38,9 +38,30 @@ var App = React.createClass({
         <hr />
         <div className={'content ' + (this.state.loaded ? 'loaded' : '')}>
           <List items={this.state.items}/>
+          {this.deleteButton()}
         </div>
       </div>
     </div>
+  },
+  deleteButton: function() {
+    if (this.state.loaded) {
+      return <div className='text-center clear-complete'>
+        <hr />
+        <button 
+          type='button'
+          onClick={this.onDeleteDoneClick}
+          className='btn btn-default'>
+          Clear Complete
+        </button>
+      </div>
+    }
+  },
+  onDeleteDoneClick: function() {
+    for(var key in this.state.items) {
+      if(this.state.items[key].done === true) {
+        this.fb.child(key).remove();
+      }
+    }
   },
   handleDataLoaded: function() {
     this.setState({loaded: true});
