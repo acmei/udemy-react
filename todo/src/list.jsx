@@ -8,7 +8,7 @@ module.exports = React.createClass({
     </div>
   },
   renderList: function() {
-    if(this.props.items && Object.keys(this.props.items).length === 0) {
+    if(!this.props.items && Object.keys(this.props.items).length === 0) {
       return <h5>
         Add a to do to get started.
       </h5>
