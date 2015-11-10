@@ -17,7 +17,7 @@ module.exports = React.createClass({
       <span className='input-group-btn'>
         <button 
           onClick={this.handleClick}
-          className='btn btn-default' 
+          className='btn btn-success' 
           type='button'>
           Add
         </button>

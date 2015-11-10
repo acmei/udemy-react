@@ -31,7 +31,7 @@ module.exports = React.createClass({
       <span className='input-group-btn'>
         {this.changesButtons()}
         <button 
-          className='btn btn-default'
+          className='btn btn-danger'
           onClick={this.handleDeleteClick}
           >
           Delete 
